@@ -85,3 +85,46 @@ fun oldest(dates : (int*int*int) list) =
 		in
 	    	SOME (oldest_nonempty dates)
 	    end
+
+fun exists(xs : int list, elem : int) =
+	if null xs
+	then false
+	else if (hd xs) = elem
+	then true
+	else exists(tl xs, elem)
+
+fun remove_duplicates(xs : (int) list) =
+	if null xs
+	then []
+	else if exists(tl xs, hd xs)
+	then remove_duplicates(tl xs)
+	else hd xs :: remove_duplicates(tl xs) 
+
+fun reverse(xs : int list) =
+	let fun reverse_util (l : int list, accumulator : int list) =
+		if null l 
+		then accumulator 
+		else reverse_util(tl l, (hd l::accumulator))
+	in
+		reverse_util(xs, [])
+	end 
+
+fun number_in_months_challenge ( dates : (int*int*int) list, xs : int list) =
+	number_in_months(dates, reverse(remove_duplicates(xs)))
+
+fun dates_in_months_challenge ( dates : (int*int*int) list, xs : int list) =
+    dates_in_months(dates, reverse(remove_duplicates(xs)))
+
+fun days_match(month : int, day : int, daysInMonth : int list) =
+	if null daysInMonth
+	then false
+	else if month = 1 andalso day < (hd daysInMonth) + 1
+	then true
+	else days_match(month - 1, day, tl daysInMonth)
+
+fun reasonable_date(date : int*int*int)=
+	if #1 date < 0 orelse #1 date = 0 orelse #2 date < 1 orelse #2 date > 12 orelse #3 date < 1 orelse #3 date > 31 
+	then false
+	else if #3 date = 29 andalso #2 date = 2 andalso (#1 date mod 400 = 0 orelse #1 date mod 4 = 0) andalso (#1 date mod 100 <> 0) 
+	then true
+	else days_match(#2 date, #3 date, daysInMonths)

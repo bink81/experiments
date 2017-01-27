@@ -31,4 +31,47 @@ val test101 = month_range(1,365) =[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 
 val test102 = month_range(85,145) = [3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
 
+
+
 val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
+
+
+
+val test12 = number_in_months_challenge ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4,2,2,3]) = 3
+
+
+
+val test13 = dates_in_months_challenge ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4,3,2,2]) = [(2012,2,28),(2011,3,31),(2011,4,28)]
+
+
+
+
+val test14 = reverse(remove_duplicates([2,3,4,3,2,2]))
+
+val test151 = reasonable_date(1, 1, 1) = true
+
+val test152 = reasonable_date(0, 1, 1) = false
+
+val test153 = reasonable_date(1, 0, 1) = false
+
+val test154 = reasonable_date(1, 1, 0) = false
+
+val test155 = reasonable_date(1, 2, 29) = false
+
+val test156 = reasonable_date(100, 2, 29) = false
+
+val test157 = reasonable_date(4, 2, 29) = true
+
+val test158 = reasonable_date(4, 2, 31) = false
+
+val test159 = reasonable_date(4, 1, 31) = true
+
+val test1510 = reasonable_date(4, 13, 31) = false
+
+val test1511 = reasonable_date(4, 12, 32) = false
+
+
+
+val daysInMonths = [31,28,31,30,31,30,31,31,30,31,30,31]
+
+val test161= days_match(1, 1, daysInMonths)
